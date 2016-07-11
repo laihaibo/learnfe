@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src='./event.js'></script>
+    </head>
+    <body>
+    <div id="box">
+    <button id="btn1">btn1</button>
+    <button id="btn2">btn2</button>
+    <button id="btn3">btn3</button>
+    <a href="http://www.baidu.com" id="go">tiaozhuan</a>
+    </div>
+    <script>
+      var go=document.getElementById('go');
+      var box=document.getElementById('box');
+      eventUtil.addHandler(box,'click',function(){
+        alert('我是整个复合纸！');
+      });
+      eventUtil.addHandler(go,'click',function(e){
+        e=eventUtil.getEvent(e);
+        alert(eventUtil.getTarget(e).nodeName);
+        eventUtil.preventDefault(e);
+        eventUtil.stopPropagation(e);
+      });
+    </script>
+    </body>
+</html>
