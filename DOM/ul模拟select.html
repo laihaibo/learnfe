@@ -22,13 +22,16 @@
             as=box.getElementsByTagName('a'),
               index=-1;
               var flag= false;
+                          var as0 = document.getElementById('li');
 
           // 点击三角时
           title.onclick=function(event){
+            index=0;
             event = event || window.event;
             event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
             if (flag==false) {
               menu.style.display="block";
+              as0.style.background='gray';
               flag = true;
             }else{
               menu.style.display='none';
@@ -36,10 +39,46 @@
             }
           }
 
+          function restcolor(){
+            for (var i = 0; i < as.length; i++) {
+                as[i].style.background=''
+              }
+          }
+          document.onkeydown=function(e){
+            as0.style.background='';
+            if (e.keyCode==40) {
+              restcolor();
+              index+=1;
+              if (index==5) {
+                index=0;
+              }
+              as[index].style.background='gray';
+            }
+            if (e.keyCode==38) {
+              restcolor();
+              index-=1;
+              if (index==-1) {
+                index=4
+              }
+              as[index].style.background='gray';
+            }
+            if (e.keyCode==13) {
+              title.innerText=as[index].innerText;
+              menu.style.display='none';
+              flag = false;
+              index=0;
+              as[index].style.background='';
+            }
+            console.log(e.keyCode);
+            console.log(as[0].getAttribute('selectid'));
+          }
+
          // 滑过滑过、离开、点击每个选项时
             // 执行脚本
           for (var i = 0; i < as.length; i++) {
             as[i].onmouseover=function(){
+              index = this.getAttribute('selectid');
+              console.log(index);
               this.style.background='gray';
             }
             as[i].onmouseleave=function(){
@@ -50,6 +89,9 @@
               menu.style.display='none';
               flag = false;//解决选择之后，双击才能弹出bug
             }
+          }
+          as0.onmouseleave=function(){
+            this.style.background='';
           }
 
          // 点击页面空白处时
@@ -64,11 +106,11 @@
   <div id="divselect">
       <cite>请选择分类</cite>
       <ul>
-         <li id="li"><a href="javascript:;" selectid="1">ASP开发</a></li>
-         <li><a href="javascript:;" selectid="2">.NET开发</a></li>
-         <li><a href="javascript:;" selectid="3">PHP开发</a></li>
-         <li><a href="javascript:;" selectid="4">Javascript开发</a></li>
-         <li><a href="javascript:;" selectid="5">Java特效</a></li>
+         <li id="li"><a href="javascript:;" selectid="0">ASP开发</a></li>
+         <li><a href="javascript:;" selectid="1">.NET开发</a></li>
+         <li><a href="javascript:;" selectid="2">PHP开发</a></li>
+         <li><a href="javascript:;" selectid="3">Javascript开发</a></li>
+         <li><a href="javascript:;" selectid="4">Java特效</a></li>
       </ul>
     </div>
 </body>
