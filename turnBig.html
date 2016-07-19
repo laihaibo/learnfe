@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>turn big</title>
+        <script>
+        window.onload = function() {
+          var btn1 = document.getElementById('btn1');
+          var btn2 = document.getElementById('btn2');
+          var word = document.getElementById('word');
+                  var style = document.body.currentStyle || document.defaultView.getComputedStyle(document.body, '')
+        console.log(style.fontSize);
+                      var num = document.defaultView.getComputedStyle(word, '').fontSize;
+                      console.log(num);
+                      // var num = word.style.fontSize;
+                      num=parseInt(num);
+                      console.log(num);
+          btn1.onclick = function() {
+            num++;
+            word.style.fontSize = num + 'px';
+          }
+          btn2.onclick = function() {
+            // var num = 14;
+            num--;
+            word.style.fontSize = num + 'px';
+          }
+        }
+        </script>
+    </head>
+    <body>
+    <input type="button" id="btn1" value="+">
+    <input type="button" id="btn2" value="-">
+    <p id="word">闷声发大财</p>
+    </body>
+</html>
