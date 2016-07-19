@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>抽奖</title>
+        <style>
+        body{font-family: 'Source Han sans';font-size: 14px;}
+          button {border: 1px solid #446d88;background: #58a linear-gradient(#77a0bb,#58a);border-radius: 4px;color: white;text-shadow: 0 -1px 1px #335166;font-size: 2rem;line-height: 30px;padding: 10px;}
+        </style>
+    </head>
+    <body>
+    <div id="title">开始抽奖啦！</div>
+    <div id="btns">
+      <button id="play">开始</button>
+      <button id="stop">结束</button>
+    </div>
+    <script>
+    var title = document.getElementById('title');
+    var play = document.getElementById('play');
+    var stop = document.getElementById('stop');
+    //设置标志符，解决了按下回车次数不同，切换事件发生情况
+    var flag=true;
+    //设置定时器
+      var timer;
+      play.onclick=playFun;
+      stop.onclick=stopFun;
+
+      document.onkeyup=function(e){
+        e = event || window.event;
+
+
+        if (e.keyCode==13) {
+          if (flag==true) {
+            playFun();
+          }else{
+            stopFun();
+          }
+
+        }
+        console.log(e.keyCode);
+      }
+
+      function playFun() {
+        flag=false; // 解决鼠标键盘配合问题
+        clearInterval(timer);
+        timer=setInterval(function(){
+          var ran = Math.floor(Math.random()*1000+0)
+          title.innerHTML=ran;
+        },20);
+        // play.style.background='white';
+        play.setAttribute('disabled','disabled');  // 将按键设为不可用
+      }
+      function stopFun(){
+        flag =true; // 解决鼠标键盘配合问题
+        clearInterval(timer);
+        play.removeAttribute('disabled'); // 将案件恢复可用
+      }
+    </script>
+    </body>
+</html>

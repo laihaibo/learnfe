@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>QQpanel</title>
+        <style>
+          body { font-family: "Source Han Sans"; font-size: 14px; }
+          #pannel { height: 300px; width: 485.4px; background-color: red; text-align: center; position: absolute; }
+          #close { width: 20px; height: 20px; border-radius: 50%; position: absolute; top: -10px; right: -10px; background: transparent url(./close.png) no-repeat scroll center; background-size: cover; }
+          #drag { width: 100%; height: 30%; background: yellow url(./qq.png) no-repeat scroll center;background-size: contain;  }
+          #drag:hover{cursor: move;}
+          #sele{width: 100%;height: 30px;line-height: 30px;position: relative;background: salmon;}
+          #seleinput{width: 150px;outline: none;}
+          #xiala{background: yellow;position: absolute;top:0;display: none;top: 15px;left: 50%;}
+          li{list-style: none;text-indent: 2em;}
+          li:hover{background-color: gray;}
+        </style>
+    </head>
+    <body>
+    <button id="show" value="show">show</button>
+      <div id="pannel">
+      <div id="close"></div>
+        <div id="drag"></div>
+        <form action="">
+        <div>
+          <label>账号：<input type="text" placeholder="请输入您的QQ账号"></label>
+          </div>
+          <div>
+          <label>密码：<input type="password" placeholder="请输入密码"></label>
+          </div>
+          <input type="submit" value="登录">
+          <select name="" id="choose" value="">
+            <option value="online" selected><span>在线</span></option>
+            <option value="call me"><span>Q我吧</span></option>
+            <option value="away"><span>离开</span></option>
+            <option value="busy"><span>忙碌</span></option>
+            <option value="silent"><span>请勿打扰</span></option>
+            <option value="hidden"><span>隐身</span></option>
+          </select>
+          <div id="sele">
+          <input type="text" id="seleinput">
+          <ul id="xiala">
+            <li id="online"><span>在线</span></li>
+            <li id="callme"><span>Q我吧</span></li>
+            <li id="away"><span>离开</span></li>
+            <li id="busy"><span>忙碌</span></li>
+            <li id="silent"><span>请勿打扰</span></li>
+            <li id="hidden"><span>隐身</span></li>
+          </ul>
+          </div>
+        </form>
+      </div>
+      <script>
+      var seleinput = document.getElementById('seleinput');
+      var xiala  = document.getElementById('xiala');
+
+      seleinput.onclick=function(){
+        // var inputX = seleinput.offsetLeft;
+        // var inputY=  seleinput.offsetTop;
+        // var inputW = seleinput.clientWidth;
+        // var inputH = seleinput.clientHeight;
+        xiala.style.display=  'block';
+        // xiala.style.left= inputX+'px';
+        // xiala.style.top= inputY+'px';
+        // xiala.style.width = inputW;
+        // xiala.style.height = inputH;
+        xiala.onclick = function(e){
+        xiala.style.display='none';
+        seleinput.value=e.target.innerText
+        console.log(e.target.innerText);
+      }
+      };
+
+
+
+
+
+
+
+
+
+        var pannel = document.getElementById('pannel');
+        var drag = document.getElementById('drag');
+        drag.addEventListener('mousedown', function(event) {
+          var posX = pannel.offsetLeft;
+          var posY = pannel.offsetTop;
+          var disX = event.clientX - posX;
+          var disY = event.clientY - posY;
+          drag.onmousemove = function(event) {
+            var left = event.clientX - disX;
+            var top = event.clientY - disY;
+            var WinW = document.documentElement.clientWidth;
+            var WinH = document.documentElement.clientHeight;
+            var pannelW = pannel.clientWidth;
+            var pannelH = pannel.clientHeight;
+            // console.log('WinW:' + pannelW, 'WinH:' + WinH);
+            if (left < 0) {
+              left = 0;
+            }else if (left>WinW-pannelW-10) {
+              left = WinW - pannelW-10;
+            }
+            if (top < 10) {
+              top = 10
+            }else if (top>WinH- pannelH) {
+              top = WinH - pannelH;
+            }
+            pannel.style.left = left + 'px';
+            pannel.style.top = top + 'px';
+          }
+          drag.onmouseup = function() {
+            drag.onmousemove = null;
+            drag.onmouseup = null;
+          }
+        })
+
+
+
+        var close = document.getElementById('close');
+        close.addEventListener('click', function() {
+          pannel.style.opacity = 0;
+        })
+        var show = document.getElementById('show');
+        show.addEventListener('click', function() {
+          pannel.style.opacity = 1;
+        })
+
+        var choose = document.getElementById('choose');
+        choose.addEventListener('change',function(){
+          var index =  choose.selectedIndex;
+          console.log(choose.options[index].value);
+        })
+      </script>
+    </body>
+</html>

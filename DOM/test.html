@@ -5,15 +5,27 @@
         <script type="text/javascript" src='./event.js'></script>
     </head>
     <body>
+    <div style="height:100px;background:red;width:200px;position:absolute;top:calc(50% - width / 2);left:calc(50% - 100px);"></div>
     <div id="box">
     <button id="btn1">btn1</button>
     <button id="btn2">btn2</button>
     <button id="btn3">btn3</button>
     <a href="http://www.baidu.com" id="go">tiaozhuan</a>
     </div>
+    <form action="">
+          <input type="email">
+          <input type="submit">
+          <label>data:<input type="text"></label>
+    </form>
+
     <script>
       var go=document.getElementById('go');
       var box=document.getElementById('box');
+      var btn3 = document.getElementById('btn3');
+      btn3.addEventListener('click',function(e){
+        this.style.color='red';
+        e.target.style.display='flex';
+      },false);
       eventUtil.addHandler(box,'click',function(){
         alert('我是整个复合纸！');
       });
