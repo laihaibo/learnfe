@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    * { margin: 0; padding: 0; }
+    ul { list-style: none; }
+    ul li { width: 200px; height: 100px; background: yellow; margin: 10px 0; opacity: 0.3; border: 2px solid red; }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>xixi</li>
+      <li>hehe</li>
+      <li>haha</li>
+    </ul>
+
+    <script type="text/javascript">
+          var oLi = document.querySelectorAll('li');
+          for (var i = 0; i < oLi.length; i++) {
+            oLi.timer = null;//为每个元素单独定义一个定时器，防止冲突
+            oLi.alpha = 30;
+            oLi[i].onmouseover = function() {
+              startMove(this, 100, 'opacity');
+            }
+            oLi[i].onmouseout = function() {
+              startMove(this, 30, 'opacity');
+            }
+          }
+          // var timer =null;
+          function startMove(obj, itarget, attr) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function() {
+              var icurrnet = 0;
+              if (attr == 'opacity') {
+                icurrnet = Math.round(parseFloat(getStyle(obj, attr)) * 100);
+              } else {
+                icurrnet = parseInt(getStyle(obj, attr));
+              }
+              var speed = (itarget - icurrnet) / 10;
+              speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+              // if(oLi.style.width > itarget) { //   speed = -5; // }
+              // else { //   speed = 5; // }
+              if (icurrnet == itarget) {
+                clearInterval(obj.timer);
+              } else { //obj.style.width =obj.clientWidth+speed+'px';
+                if (attr == 'opacity') {
+                  obj.style.opacity = (icurrnet + speed) / 100;
+                } else {
+                  obj.style[attr] = icurrnet + speed + 'px';
+                  // obj.style.fontSize = parseInt(getStyle(obj, 'fontSize')) + speed + 'px';
+                }
+              }
+            }, 20)
+          }
+
+          function getStyle(obj, attr) {
+            if (obj.currentStyle) {
+              return obj.currentStyle[attr];
+            } else {
+              return getComputedStyle(obj, false)[attr];
+            }
+          }
+    </script>
+  </body>
+</html>

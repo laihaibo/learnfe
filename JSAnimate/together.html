@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        *{margin: 0;padding: 0;}
+        ul{list-style: none;}
+        ul li{width: 200px;height: 100px;background: yellow;margin: 20px 0;border: 4px solid #000;opacity: 0.36;}
+        </style>
+        <script src="move.js"></script>
+    </head>
+    <body>
+      <ul>
+        <li id="li1">xixi</li>
+      </ul>
+
+        <script>
+            var li =document.getElementById('li1');
+            li.timer = null;
+            li.onmouseover=function(){
+              var obj = this;//注意作用域和this的变化
+              startMove(obj,{width:300,height:200,opacity:100})
+              }
+            li.onmouseout=function(){
+                var obj = this;
+              startMove(obj,{width:200,height:100,opacity:50})
+              }
+        </script>
+    </body>
+</html>
