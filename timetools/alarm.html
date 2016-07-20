@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>倒计时</title>
+        <style>
+        section{display: flex;justify-content: center;align-items: center;height: 20vh;background:yellow url(../img/clock.png) no-repeat scroll left;background-size: contain;}
+        </style>
+    </head>
+    <body>
+      <section>
+        <div>
+        <label>输入倒计时日期：<input type="text" id="typein"></label>
+        <button id="btn">确认</button>
+        </div>
+        <div>倒计时还有：</div>
+        <div id="clock"></div>
+      </section>
+
+      <script>
+      var typein= document.getElementById('typein');
+      var btn =  document.getElementById('btn');
+      var endTime = typein.value;
+                    var timer=null;
+
+      btn.addEventListener('click',function(){
+        endTime = new Date(typein.value.trim());
+        console.log(endTime);
+      timer = setInterval(function(){
+        var leftTime = getLeftTime();
+        var clock = document.getElementById('clock');
+        clock.innerHTML=leftTime;
+      },30);
+      })
+
+      function setDefaultEndTime(){
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+        var weekday = now.getDay();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var milliseconds = now.getMilliseconds();
+        var weekdays = ['礼拜天', '礼拜一', '礼拜二', '礼拜三', '礼拜四', '礼拜五', '礼拜六'];
+        typein.value = year + '/' + checkTime(month) + '/' + checkTime(day) + '-' + checkTime(hours) + ':' + checkTime(minutes) + ':' + checkTime(seconds);
+      }
+
+      setDefaultEndTime();
+
+      // var curTime = getCurTime();
+      // console.log(new Date('2016/07/20 23:20:57'));
+      // console.log(new Date().getTimezoneOffset());
+
+      function getLeftTime() {
+        // var endTime = new Date('2016/07/21 23:20:57');
+        var start = new Date();
+        var leftTime = parseInt((endTime.getTime() - start.getTime()) / 1000);
+        if (leftTime<=0) {
+          leftTime=0;
+          clearInterval(timer);
+          alert('时间到！');
+        }
+        var leftDay = parseInt(leftTime / (24 * 60 * 60));
+        var leftHour = parseInt(leftTime / (60 * 60) % 24);
+        var leftMinute = parseInt(leftTime / 60 % 60);
+        var leftSecond = parseInt(leftTime % 60);
+        return checkTime(leftDay) + '天' + checkTime(leftHour) + '小时' + checkTime(leftMinute) + '分' + checkTime(leftSecond) + '秒';
+      }
+
+      function checkTime(num) {
+        return num < 10 ? '0' + num : num;
+      }
+      </script>
+    </body>
+</html>
