@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>数字时钟</title>
+        <style>
+        section{display: flex;justify-content: center;align-items: center;height: 20vh;background:yellow url(../img/clock.png) no-repeat scroll left;background-size: contain;}
+        </style>
+    </head>
+    <body>
+      <section>
+        <div>现在是北京时间：</div>
+        <div id="clock"></div>
+      </section>
+
+      <script>
+      function getTime(){
+        var now = new Date();
+          var year = now.getFullYear();
+          var month = now.getMonth()+1;
+          var day = now.getDate();
+          var weekday = now.getDay();
+          var hours = now.getHours();
+          var minutes = now.getMinutes();
+          var seconds = now.getSeconds();
+          var milliseconds=now.getMilliseconds()
+          var weekdays=['礼拜天','礼拜一','礼拜二','礼拜三','礼拜四','礼拜五','礼拜六']
+          function checkTime(num) {
+            return num<10 ? '0'+num:num;
+          }
+
+          return year+'年'+checkTime(month)+'月'+checkTime(day)+'日'+weekdays[weekday]+checkTime(hours)+'时'+checkTime(minutes)+'分'+checkTime(seconds)+'秒';
+      }
+
+      // console.log(new Date().getTimezoneOffset());
+        var timer=null;
+        timer = setInterval(function(){
+          var now = getTime();
+          var clock = document.getElementById('clock');
+          clock.innerHTML=now;
+        },30);
+      </script>
+    </body>
+</html>
