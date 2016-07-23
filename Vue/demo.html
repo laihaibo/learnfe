@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>demo</title>
+        <style>
+          .form-group{
+            border: 1px solid red;
+          }
+          .text-center{
+            text-align: center;
+            background: red;
+          }
+        </style>
+        <script src="../lib/vue.js"></script>
+    </head>
+    <body>
+      <div id="app">
+        <fieldset>
+          <legend :class="'text-center'">
+            Create a new person
+          </legend>
+          <div class="form-group">
+            <label>Name:</label><input type="text" v-model="createNewPerson.name">
+          </div>
+          <div class="form-group">
+            <label>Age:</label><input type="text" v-model="createNewPerson.age">
+          </div>
+          <div class="form-group">
+            <label>Sex:</label>
+            <select v-model="createNewPerson.sex">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <button @click="createAPerson">Create</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="person in people">
+                <td>{{ person.name }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.sex }}</td>
+                <td :class="'text-center'"><button @click="deletePerson($index)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+
+      <script>
+        var vm = new Vue({
+          el: '#app',
+          data: {
+            createNewPerson: {
+              name: '',
+              age: '',
+              sex: 'Male'
+            },
+            people: [{
+              name: 'Pony',
+              age: '30',
+              sex: 'Male'
+            }, {
+              name: 'Mayuyu',
+              age: '20',
+              sex: 'Female'
+            }]
+          },
+          methods:{
+            createAPerson: function(){
+              this.people.push(this.createNewPerson);
+            },
+            deletePerson: function(index){
+              this.people.splice(index,1);
+            }
+          }
+        });
+      </script>
+    </body>
+</html>

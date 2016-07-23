@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jqajax</title>
+        <script src="../lib/jquery-1.12.3.min.js"></script></script>
+    </head>
+    <body>
+    <script>
+      $(document).ready(function(){
+        $('#search').click(function(){
+          $.ajax({
+            type:'GET',
+            rul:'serve.php?number='+$('#keyword').val(),
+            dataType:'json',
+            success:function(){
+
+            },
+            error:function(jqXHR){
+              alert('error: '+jqXHR.status);
+            }
+          })
+        });
+        $('#search').click(function(){
+          $.ajax({
+            type:'POST',
+            url:'serve.php',
+            dataType:'json',
+            data:{
+              name:$('#searchResult').val(),
+              number:$('#dsafd').val(),
+              sex:$('#xx').val(),
+            },
+            success:function(){
+              if(success){
+                $('#searchResult').html(data.msg);
+              }else{
+                $('#search').html('erreor':data.msg);
+              }
+            },
+            error:function(jqXHR){
+              alert('error: '+jqXHR.status);
+            }
+          })
+        });
+      })
+    </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <script>
+            $(document).ready(function(){
+        $('#search').click(function(){
+          $.ajax({
+            type:'GET',
+            rul:'serve.php?number='+$('#keyword').val(),
+            dataType:'jsonp',
+            jsonp:'callback',
+            success:function(){
+
+            },
+            error:function(jqXHR){
+              alert('error: '+jqXHR.status);
+            }
+          })
+        });
+      });
+    </script>
+    </body>
+</html>
