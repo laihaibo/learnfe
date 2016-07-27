@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+      <input id="file" type="file" accept="image/png,image/jpeg">
+      <button id="upload">upload</button>
+      <button id="readBinary">读取二进制数据</button>
+      <button id="readText">读取文本文件</button>
+      <div id="show"></div>
+      <img id="preview" src="" alt="">
+
+      <script>
+        //上传并显示图像
+        var upload = document.getElementById('upload');
+        upload.addEventListener('click', previewFile);
+
+        function previewFile() {
+          var preview = document.getElementById('preview');
+          var show = document.getElementById('show');
+          var file = document.getElementById('file').files[0];
+          var reader = new FileReader();
+
+          reader.addEventListener("load", function() {
+            // console.log(reader.result);
+            show.innerHTML = '<img src="' + reader.result + '" alt="preview">';
+          }, false);
+
+          if (file) {
+            reader.readAsDataURL(file);
+          }
+        }
+
+        var readBinary = document.getElementById('readBinary');
+        readBinary.addEventListener('click', readAsBinary);
+
+        function readAsBinary() {
+          var show = document.getElementById('show');
+          var file = document.getElementById('file').files[0];
+          var reader = new FileReader();
+          reader.addEventListener('load', function() {
+            show.innerHTML = reader.result;
+          },false);
+          if(file){
+            reader.readAsText(file);
+          }
+        }
+      </script>
+    </body>
+</html>

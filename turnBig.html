@@ -5,6 +5,11 @@
         <title>turn big</title>
         <style>
           body{font-family: "Source han sans";}
+
+          div{width:100px;height: 100px;background:salmon url(./img/clock.png) center;transition: all 2s ease;background-size: cover;}
+          div:hover {
+              background-size: 110px;
+          }
         </style>
         <script>
         window.onload = function() {
@@ -34,5 +39,7 @@
     <input type="button" id="btn1" value="+">
     <input type="button" id="btn2" value="-">
     <p id="word">闷声发大财</p>
+    <div></div>
+    <img src="" alt="clock" title="clock">
     </body>
 </html>
