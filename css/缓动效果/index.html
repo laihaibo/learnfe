@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>oop</title>
+        <style>
+          .btn{
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: teal;
+          }
+
+          .ball{
+            animation: bounce 3s;
+          }
+
+          @keyframes bounce{
+            60%,80%, to{transform: translateY(350px);}
+            70%{transform: translateY(250px);}
+            90%{transform: translateY(300px);}
+          }
+        </style>
+    </head>
+    <body>
+      <div class="btn ball">
+        <div class="avatar"></div>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+/*
+* @Author: laihaibo
+* @Date:   2016-05-27 21:45:30
+* @Last Modified by:   laihaibo
+* @Last Modified time: 2016-06-10 00:21:48
+*/
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    width: 100%;
+    height: 100%;
+}
+/*#canvas{border:1px solid rebeccapurple;display:block;margin:20px auto}*/

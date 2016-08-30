@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>everyday</title>
+        <style type="text/css">
+          body{margin: 0;padding: 0;overflow: hidden;}
+        </style>
+    </head>
+    <body>
+      <canvas id="canvas"></canvas>
+      <script>
+        window.onload = function() {
+          var canvas = document.getElementById('canvas');
+          var context = canvas.getContext('2d');
+          var w = canvas.width = window.innerWidth;
+          var h = canvas.height = window.innerHeight;
+
+          // 初始化
+          var clearColor = 'rgba(0,0,0,.1)';
+          var wordColor = '#B5A642';
+          var words = '八百标兵奔北坡 炮兵并排北边跑 炮兵怕把标兵碰 标兵怕碰炮兵炮';
+          var wordsArr = words.split('');
+          var font_size = 21;
+          var clumns = w / font_size;
+          var drops = [];
+
+          for (var i = 0; i < clumns; i++) {
+            drops[i] = 1;
+          }
+
+          function draw() {
+            context.save();
+            context.fillStyle = wordColor;
+            context.font = font_size + "px LiSu";
+            for (var i = 0; i < drops.length; i++) {
+              var text = wordsArr[Math.floor(Math.random() * wordsArr.length)];
+              context.fillText(text, i * font_size * 1.5, drops[i] * font_size);
+              if (drops[i] * font_size > h && Math.random() > 0.98) {
+                drops[i] = 0;
+              }
+              drops[i]++;
+            }
+            context.restore();
+          }
+          (function drawFrame() {
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.fillStyle = clearColor;
+            context.fillRect(0, 0, w, h);
+            draw();
+          }())
+
+          function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+          }
+          canvas.addEventListener('resize', resize);
+        }
+      </script>
+    </body>
+</html>

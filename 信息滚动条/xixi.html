@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    body{
+      font-size: 16px;
+    }
+      ul {
+        /*height: 1.4rem;*/
+        overflow: hidden;
+      }
+      li{
+        /*height: 1.1rem;*/
+      }
+      a{
+        line-height: 1.4rem;
+        height: 1.4rem;
+      }
+    </style>
+</head>
+<body style="margin-bottom: 150px;">
+<ul id="logs">
+    <li><a href="">This is log 1</a></li>
+    <li><a href="">This is log 2</a></li>
+    <li><a href="">This is log 3</a></li>
+    <li><a href="">This is log 4</a></li>
+    <li><a href="">This is log 5</a></li>
+    <li><a href="">This is log 6</a></li>
+    <li><a href="">This is log 7</a></li>
+    <li><a href="">This is log 8</a></li>
+</ul>
+
+
+<script src="../lib/jquery-1.12.3.min.js"></script>
+<script>
+    var $logs = $('#logs');
+    var timer;
+    var speed =50;
+    var daly=2000;
+    console.log(new Date());
+    function start(){
+      $('#logs li:first').slideUp().queue(function(next){
+        $(this).appendTo($logs);
+        // $(this).slideDown();
+        next();
+        // $('#logs li:last').slideDown();
+      }).slideDown();
+      // $('#logs li:last').slideDown();
+      timer = setInterval(scroll,speed);
+    }
+    function scroll(){
+      clearInterval(timer);
+      setTimeout(start,daly);
+    }
+    setTimeout(start,daly);
+</script>
+</body>
+</html>

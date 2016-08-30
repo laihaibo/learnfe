@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>七巧板</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+          /*#canvas{border:1px solid rebeccapurple;}*/
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas">
+        </canvas>
+
+        <script>
+          window.onload=function(){
+            var canvas = document.getElementById('canvas');
+            canvas.width = 400;
+            canvas.height = 400;
+            var context = canvas.getContext('2d');
+
+            //描点
+            var square = [
+            {p:[{x:0,y:0},{x:400,y:0},{x:200,y:200}],color:'aqua'},
+            {p:[{x:0,y:0},{x:200,y:200},{x:0,y:400}],color:'yellow'},
+            {p:[{x:400,y:0},{x:400,y:200},{x:300,y:300},{x:300,y:100}],color:'fuchsia'},
+            {p:[{x:300,y:100},{x:300,y:300},{x:200,y:200}],color:'green'},
+            {p:[{x:200,y:200},{x:300,y:300},{x:200,y:400},{x:100,y:300}],color:'salmon'},
+            {p:[{x:100,y:300},{x:200,y:400},{x:0,y:400}],color:'olive'},
+            {p:[{x:400,y:200},{x:400,y:400},{x:200,y:400}],color:'teal'},
+            ];
+
+            //逐个绘制每一块七巧板
+            for (var i = 0; i < square.length; i++) {
+              draw(square[i]);
+            }
+
+            //绘制函数
+            function draw(piece){
+              context.beginPath();
+              context.moveTo(piece.p[0].x,piece.p[0].y);
+              for (var i = 0; i < piece.p.length; i++) {
+                context.lineTo(piece.p[i].x,piece.p[i].y);
+              }
+                context.closePath();
+                context.fillStyle =piece.color;
+                context.fill();
+            }
+          }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>oop</title>
+        <style>
+          .btn{
+            width: 5rem;
+            height: 4rem;
+            border-radius: 20px;
+            background-color: yellow;
+          }
+
+          .shadow-left{
+            box-shadow: 5px 0 10px -5px red;
+          }
+
+          .shadow-right{
+            box-shadow: -5px 0 10px -5px red;
+          }
+
+          .shadow-bottom{
+            box-shadow: 0 5px 10px -5px red;
+          }
+          .shadow-x{
+            box-shadow: 5px 0 10px -5px red,
+                        -5px 0 10px -5px red;
+          }
+          .shadow-y{
+            box-shadow:0 5px 10px -5px red,
+                       0 -5px 10px -5px red;
+          }
+        </style>
+    </head>
+    <body>
+      <p>右侧投影</p>
+      <div class="btn shadow-left"></div>
+      <p>左侧投影</p>
+      <div class="btn shadow-right"></div>
+      <p>下方投影</p>
+      <div class="btn shadow-bottom"></div>
+      <p>x轴投影</p>
+      <div class="btn shadow-x"></div>
+      <p>y轴投影</p>
+      <div class="btn shadow-y"></div>
+      </body>
+    </body>
+</html>
